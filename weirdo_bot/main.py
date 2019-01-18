@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
     for current_event in longpoll.listen():
         if current_event.type == VkBotEventType.MESSAGE_NEW and current_event.object.text:
-            if current_event.object.text.startswith("сравни"):
+            if current_event.object.text("сравни"):
 
                 urls = get_attached_photo_urls(current_event)
                 images = get_images_from_urls(urls)
