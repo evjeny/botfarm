@@ -1,5 +1,7 @@
-import importlib, importlib.util
+import importlib
+import importlib.util
 import os
+
 
 class ImportManager:
     def __init__(self):
@@ -7,7 +9,6 @@ class ImportManager:
         files = os.listdir(self.this_dir)
         self.scripts = [f for f in files if f.endswith(".py")]
         self.modules = []
-
 
     """Перебирает все модули в директории и импортирует их.
     Возвращает список модулей.
@@ -17,7 +18,6 @@ class ImportManager:
             mod = self._import_module_from_file(full_name)
             self.modules.append(mod)
         return self.modules
-
 
     """Импортирует модуль из переданной директории"""
     def _import_module_from_file(self, full_name):
