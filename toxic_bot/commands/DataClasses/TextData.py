@@ -5,12 +5,16 @@ class TextData:
         self.keys = []
 
         self.event = event
+        self.id = event.object.peer_id
         self.vk = vk
         self.vk_session = vk_session
         self.string = self.event.object.text
 
         temp = self.string.find(' ')
-        self.command = self.string[:temp]
+        if temp == -1:
+            self.command = self.string
+        else:
+            self.command = self.string[:temp]
         self.command = self.command.lower()
 
         self.text = self.string[temp+1:]
