@@ -34,7 +34,7 @@ def Main(event, vk_session, vk):
         parts.append(".")
 
         prev = ""
-        for i, part in enumerate(parts):
+        for part in parts:
             next_words = words.get(prev, dict())
             next_words[part] = next_words.get(part, 0) + 1
             words[prev] = next_words
