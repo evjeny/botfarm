@@ -75,4 +75,3 @@ def Main(event, vk_session, vk):
     else:
         add_to_stats(words, data)
         save_words(words, data_file)
-
