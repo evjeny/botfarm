@@ -1,7 +1,5 @@
-import importlib
-import importlib.util
+import importlib, importlib.util
 import os
-
 
 class ImportManager:
     def __init__(self):
