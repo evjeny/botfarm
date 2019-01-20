@@ -24,7 +24,4 @@ def handle(event):
             print('Failed to convert message "{}" from {} with id {} to int.'.format(data.text, "USER" if data.id == data.event.object.from_id else "CHAT", id))
 
 def init(vk_api):
-    global _vk
     global _data
-
-    _vk = vk_api

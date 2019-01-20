@@ -33,13 +33,12 @@ class ModulesManager:
         module_dir = os.path.join(self.path, module_name)
         module_name = module_name[:module_name.rfind('.')]
 
-        # Getting a module spec
         module_spec = importlib.util.spec_from_file_location(
             module_name,
             module_dir
         )
 
-        # Import module from its spec
+        # Check if module specification is correct
         if module_spec:
             mod = importlib.util.module_from_spec(module_spec)
             module_spec.loader.exec_module(mod)

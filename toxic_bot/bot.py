@@ -1,44 +1,35 @@
-import vk_api
 import json
-from ImportManager import ImportManager
+
+from modules_manager import ModulesManager
+
+import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
 
-class VKbot:
+class ToxicBot:
     def __init__(self, token, group_id):
         self.random_id = 0
         self.vk_session = vk_api.VkApi(token=token)
         self.vk = self.vk_session.get_api()
 
         self.longpoll = VkBotLongPoll(self.vk_session, group_id)
-        self.import_commands()
+        self.module_manager = ModulesManager(self.vk)
 
-    """Слушаем все events в longpoll"""
+        self.listen_for_longpoll()
+
+    # Listen for all events in longpoll
     def listen_for_longpoll(self):
-
-        print("Started listening")
-        print()
+        print("Started listening\n")
 
         for event in self.longpoll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW and event.object.text:
-                self.event = event
-                self.check_for_commands()
-
-    """Исполняет метод Main в каждой команде"""
-    def check_for_commands(self):
-        for elem in self.commands:
-            elem.Main(self.event, self.vk_session, self.vk)
-
-    """Импорт всех команд из папки commands"""
-    def import_commands(self):
-        import_manager = ImportManager()
-        self.commands = import_manager.get_all_commands()
+                self.module_manager.handle(event)
 
 
-with open("login_data.json", "r") as file:
-    data = json.loads(file.read())
-    token = data["token"]
-    group_id = data["group_id"]
+if __name__ == "__main__":
+    with open("login_data.json", "r") as file:
+        data = json.loads(file.read())
+        token = data["token"]
+        group_id = data["group_id"]
 
-vk = VKbot(token, group_id)
-vk.listen_for_longpoll()
+    bot = ToxicBot(token, group_id)
