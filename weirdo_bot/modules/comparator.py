@@ -5,7 +5,7 @@ Class for comparison images using Structural similarity index
 from itertools import combinations
 import random
 
-from skimage.measure import structural_similarity as ssim
+from skimage.measure import compare_ssim as ssim
 from skimage.io import imread
 from skimage.transform import resize
 
@@ -78,10 +78,8 @@ def resize_images_to_one_size(images):
     return res
 
 
-def init(vk_api):
-    global api
-
-    api = vk_api
+def init():
+    pass
 
 
 def handle(event):
@@ -105,3 +103,4 @@ def handle(event):
         res = "\n".join(result)
 
         send_message(api, event, res)
+

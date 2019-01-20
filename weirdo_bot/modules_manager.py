@@ -23,7 +23,9 @@ class ModulesManager:
         for script_name in scripts:
             mod = self._import_module_from_file(script_name)
             if mod:
-                mod.init(vk_api)
+                mod.path = self.path
+                mod.api = vk_api
+                mod.init()
                 self._modules.append(mod)
 
     def _import_module_from_file(self, module_name):
@@ -35,12 +37,11 @@ class ModulesManager:
         module_dir = os.path.join(self.path, module_name)
         module_name = module_name[:module_name.rfind('.')]
 
-        # Получение спецификации модуля.
         module_spec = importlib.util.spec_from_file_location(
             module_name,
             module_dir
         )
-        # Импортирование модуля по спецификации.
+        # if module specification is correct, continue
         if module_spec:
             mod = importlib.util.module_from_spec(module_spec)
             module_spec.loader.exec_module(mod)

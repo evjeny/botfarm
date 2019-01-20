@@ -15,7 +15,7 @@ def get_params(params_file):
 
 
 if __name__ == '__main__':
-    token, group_id = get_params("params.json")
+    token, group_id = get_params("login_data.json")
 
     vk_session = vk_api.VkApi(token=token)
     vk = vk_session.get_api()
