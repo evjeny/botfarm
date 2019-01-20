@@ -15,7 +15,7 @@ def handle(event):
         print('Sending message "{0}" to {1} with id {2}'.format(msg,
             "USER" if _data.event.object.peer_id == _data.event.object.from_id else "CHAT", id))
 
-    if _data.command in _data.keys:
+    if _data.command in _data.keys and _data.text:
         send_message(_data.text, _data.event.object.peer_id)
 
 

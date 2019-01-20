@@ -17,7 +17,6 @@ class ToxicBot:
 
         self.listen_for_longpoll()
 
-    # Listen for all events in longpoll
     def listen_for_longpoll(self):
         print("Started listening\n")
 

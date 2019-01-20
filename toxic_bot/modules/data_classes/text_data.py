@@ -10,8 +10,8 @@ class TextData:
         temp = self.string.find(' ')
         if temp == -1:
             self.command = self.string
+            self.text = ''
         else:
             self.command = self.string[:temp]
+            self.text = self.string[temp + 1:]
         self.command = self.command.lower()
-
-        self.text = self.string[temp+1:]
