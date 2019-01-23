@@ -1,0 +1,662 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> main
+Rule 1     main -> expression
+Rule 2     var_assign -> ID
+Rule 3     expression -> INT
+Rule 4     expression -> FLOAT
+Rule 5     expression -> SQRT
+Rule 6     expression -> var_assign
+Rule 7     expression -> expression + expression
+Rule 8     expression -> expression - expression
+Rule 9     expression -> expression * expression
+Rule 10    expression -> expression / expression
+Rule 11    expression -> expression POWER expression
+Rule 12    expression -> SQRT expression
+Rule 13    expression -> - expression
+Rule 14    expression -> ( expression )
+Rule 15    expression -> ABS expression ABS
+
+Terminals, with rules where they appear
+
+(                    : 14
+)                    : 14
+*                    : 9
++                    : 7
+-                    : 8 13
+/                    : 10
+ABS                  : 15 15
+FLOAT                : 4
+ID                   : 2
+INT                  : 3
+POWER                : 11
+SQRT                 : 5 12
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 7 7 8 8 9 9 10 10 11 11 12 13 14 15
+main                 : 0
+var_assign           : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . main
+    (1) main -> . expression
+    (3) expression -> . INT
+    (4) expression -> . FLOAT
+    (5) expression -> . SQRT
+    (6) expression -> . var_assign
+    (7) expression -> . expression + expression
+    (8) expression -> . expression - expression
+    (9) expression -> . expression * expression
+    (10) expression -> . expression / expression
+    (11) expression -> . expression POWER expression
+    (12) expression -> . SQRT expression
+    (13) expression -> . - expression
+    (14) expression -> . ( expression )
+    (15) expression -> . ABS expression ABS
+    (2) var_assign -> . ID
+
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    SQRT            shift and go to state 5
+    -               shift and go to state 7
+    (               shift and go to state 8
+    ABS             shift and go to state 9
+    ID              shift and go to state 10
+
+    main                           shift and go to state 1
+    expression                     shift and go to state 2
+    var_assign                     shift and go to state 6
+
+state 1
+
+    (0) S' -> main .
+
+
+
+state 2
+
+    (1) main -> expression .
+    (7) expression -> expression . + expression
+    (8) expression -> expression . - expression
+    (9) expression -> expression . * expression
+    (10) expression -> expression . / expression
+    (11) expression -> expression . POWER expression
+
+    $end            reduce using rule 1 (main -> expression .)
+    +               shift and go to state 11
+    -               shift and go to state 12
+    *               shift and go to state 13
+    /               shift and go to state 14
+    POWER           shift and go to state 15
+
+
+state 3
+
+    (3) expression -> INT .
+
+    +               reduce using rule 3 (expression -> INT .)
+    -               reduce using rule 3 (expression -> INT .)
+    *               reduce using rule 3 (expression -> INT .)
+    /               reduce using rule 3 (expression -> INT .)
+    POWER           reduce using rule 3 (expression -> INT .)
+    $end            reduce using rule 3 (expression -> INT .)
+    )               reduce using rule 3 (expression -> INT .)
+    ABS             reduce using rule 3 (expression -> INT .)
+
+
+state 4
+
+    (4) expression -> FLOAT .
+
+    +               reduce using rule 4 (expression -> FLOAT .)
+    -               reduce using rule 4 (expression -> FLOAT .)
+    *               reduce using rule 4 (expression -> FLOAT .)
+    /               reduce using rule 4 (expression -> FLOAT .)
+    POWER           reduce using rule 4 (expression -> FLOAT .)
+    $end            reduce using rule 4 (expression -> FLOAT .)
+    )               reduce using rule 4 (expression -> FLOAT .)
+    ABS             reduce using rule 4 (expression -> FLOAT .)
+
+
+state 5
+
+    (5) expression -> SQRT .
+    (12) expression -> SQRT . expression
+    (3) expression -> . INT
+    (4) expression -> . FLOAT
+    (5) expression -> . SQRT
+    (6) expression -> . var_assign
+    (7) expression -> . expression + expression
+    (8) expression -> . expression - expression
+    (9) expression -> . expression * expression
+    (10) expression -> . expression / expression
+    (11) expression -> . expression POWER expression
+    (12) expression -> . SQRT expression
+    (13) expression -> . - expression
+    (14) expression -> . ( expression )
+    (15) expression -> . ABS expression ABS
+    (2) var_assign -> . ID
+
+    +               reduce using rule 5 (expression -> SQRT .)
+    -               reduce using rule 5 (expression -> SQRT .)
+    *               reduce using rule 5 (expression -> SQRT .)
+    /               reduce using rule 5 (expression -> SQRT .)
+    POWER           reduce using rule 5 (expression -> SQRT .)
+    $end            reduce using rule 5 (expression -> SQRT .)
+    )               reduce using rule 5 (expression -> SQRT .)
+    ABS             reduce using rule 5 (expression -> SQRT .)
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    SQRT            shift and go to state 5
+    (               shift and go to state 8
+    ID              shift and go to state 10
+
+  ! -               [ shift and go to state 7 ]
+  ! ABS             [ shift and go to state 9 ]
+
+    expression                     shift and go to state 16
+    var_assign                     shift and go to state 6
+
+state 6
+
+    (6) expression -> var_assign .
+
+    +               reduce using rule 6 (expression -> var_assign .)
+    -               reduce using rule 6 (expression -> var_assign .)
+    *               reduce using rule 6 (expression -> var_assign .)
+    /               reduce using rule 6 (expression -> var_assign .)
+    POWER           reduce using rule 6 (expression -> var_assign .)
+    $end            reduce using rule 6 (expression -> var_assign .)
+    )               reduce using rule 6 (expression -> var_assign .)
+    ABS             reduce using rule 6 (expression -> var_assign .)
+
+
+state 7
+
+    (13) expression -> - . expression
+    (3) expression -> . INT
+    (4) expression -> . FLOAT
+    (5) expression -> . SQRT
+    (6) expression -> . var_assign
+    (7) expression -> . expression + expression
+    (8) expression -> . expression - expression
+    (9) expression -> . expression * expression
+    (10) expression -> . expression / expression
+    (11) expression -> . expression POWER expression
+    (12) expression -> . SQRT expression
+    (13) expression -> . - expression
+    (14) expression -> . ( expression )
+    (15) expression -> . ABS expression ABS
+    (2) var_assign -> . ID
+
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    SQRT            shift and go to state 5
+    -               shift and go to state 7
+    (               shift and go to state 8
+    ABS             shift and go to state 9
+    ID              shift and go to state 10
+
+    expression                     shift and go to state 17
+    var_assign                     shift and go to state 6
+
+state 8
+
+    (14) expression -> ( . expression )
+    (3) expression -> . INT
+    (4) expression -> . FLOAT
+    (5) expression -> . SQRT
+    (6) expression -> . var_assign
+    (7) expression -> . expression + expression
+    (8) expression -> . expression - expression
+    (9) expression -> . expression * expression
+    (10) expression -> . expression / expression
+    (11) expression -> . expression POWER expression
+    (12) expression -> . SQRT expression
+    (13) expression -> . - expression
+    (14) expression -> . ( expression )
+    (15) expression -> . ABS expression ABS
+    (2) var_assign -> . ID
+
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    SQRT            shift and go to state 5
+    -               shift and go to state 7
+    (               shift and go to state 8
+    ABS             shift and go to state 9
+    ID              shift and go to state 10
+
+    expression                     shift and go to state 18
+    var_assign                     shift and go to state 6
+
+state 9
+
+    (15) expression -> ABS . expression ABS
+    (3) expression -> . INT
+    (4) expression -> . FLOAT
+    (5) expression -> . SQRT
+    (6) expression -> . var_assign
+    (7) expression -> . expression + expression
+    (8) expression -> . expression - expression
+    (9) expression -> . expression * expression
+    (10) expression -> . expression / expression
+    (11) expression -> . expression POWER expression
+    (12) expression -> . SQRT expression
+    (13) expression -> . - expression
+    (14) expression -> . ( expression )
+    (15) expression -> . ABS expression ABS
+    (2) var_assign -> . ID
+
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    SQRT            shift and go to state 5
+    -               shift and go to state 7
+    (               shift and go to state 8
+    ABS             shift and go to state 9
+    ID              shift and go to state 10
+
+    expression                     shift and go to state 19
+    var_assign                     shift and go to state 6
+
+state 10
+
+    (2) var_assign -> ID .
+
+    +               reduce using rule 2 (var_assign -> ID .)
+    -               reduce using rule 2 (var_assign -> ID .)
+    *               reduce using rule 2 (var_assign -> ID .)
+    /               reduce using rule 2 (var_assign -> ID .)
+    POWER           reduce using rule 2 (var_assign -> ID .)
+    $end            reduce using rule 2 (var_assign -> ID .)
+    )               reduce using rule 2 (var_assign -> ID .)
+    ABS             reduce using rule 2 (var_assign -> ID .)
+
+
+state 11
+
+    (7) expression -> expression + . expression
+    (3) expression -> . INT
+    (4) expression -> . FLOAT
+    (5) expression -> . SQRT
+    (6) expression -> . var_assign
+    (7) expression -> . expression + expression
+    (8) expression -> . expression - expression
+    (9) expression -> . expression * expression
+    (10) expression -> . expression / expression
+    (11) expression -> . expression POWER expression
+    (12) expression -> . SQRT expression
+    (13) expression -> . - expression
+    (14) expression -> . ( expression )
+    (15) expression -> . ABS expression ABS
+    (2) var_assign -> . ID
+
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    SQRT            shift and go to state 5
+    -               shift and go to state 7
+    (               shift and go to state 8
+    ABS             shift and go to state 9
+    ID              shift and go to state 10
+
+    expression                     shift and go to state 20
+    var_assign                     shift and go to state 6
+
+state 12
+
+    (8) expression -> expression - . expression
+    (3) expression -> . INT
+    (4) expression -> . FLOAT
+    (5) expression -> . SQRT
+    (6) expression -> . var_assign
+    (7) expression -> . expression + expression
+    (8) expression -> . expression - expression
+    (9) expression -> . expression * expression
+    (10) expression -> . expression / expression
+    (11) expression -> . expression POWER expression
+    (12) expression -> . SQRT expression
+    (13) expression -> . - expression
+    (14) expression -> . ( expression )
+    (15) expression -> . ABS expression ABS
+    (2) var_assign -> . ID
+
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    SQRT            shift and go to state 5
+    -               shift and go to state 7
+    (               shift and go to state 8
+    ABS             shift and go to state 9
+    ID              shift and go to state 10
+
+    expression                     shift and go to state 21
+    var_assign                     shift and go to state 6
+
+state 13
+
+    (9) expression -> expression * . expression
+    (3) expression -> . INT
+    (4) expression -> . FLOAT
+    (5) expression -> . SQRT
+    (6) expression -> . var_assign
+    (7) expression -> . expression + expression
+    (8) expression -> . expression - expression
+    (9) expression -> . expression * expression
+    (10) expression -> . expression / expression
+    (11) expression -> . expression POWER expression
+    (12) expression -> . SQRT expression
+    (13) expression -> . - expression
+    (14) expression -> . ( expression )
+    (15) expression -> . ABS expression ABS
+    (2) var_assign -> . ID
+
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    SQRT            shift and go to state 5
+    -               shift and go to state 7
+    (               shift and go to state 8
+    ABS             shift and go to state 9
+    ID              shift and go to state 10
+
+    expression                     shift and go to state 22
+    var_assign                     shift and go to state 6
+
+state 14
+
+    (10) expression -> expression / . expression
+    (3) expression -> . INT
+    (4) expression -> . FLOAT
+    (5) expression -> . SQRT
+    (6) expression -> . var_assign
+    (7) expression -> . expression + expression
+    (8) expression -> . expression - expression
+    (9) expression -> . expression * expression
+    (10) expression -> . expression / expression
+    (11) expression -> . expression POWER expression
+    (12) expression -> . SQRT expression
+    (13) expression -> . - expression
+    (14) expression -> . ( expression )
+    (15) expression -> . ABS expression ABS
+    (2) var_assign -> . ID
+
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    SQRT            shift and go to state 5
+    -               shift and go to state 7
+    (               shift and go to state 8
+    ABS             shift and go to state 9
+    ID              shift and go to state 10
+
+    expression                     shift and go to state 23
+    var_assign                     shift and go to state 6
+
+state 15
+
+    (11) expression -> expression POWER . expression
+    (3) expression -> . INT
+    (4) expression -> . FLOAT
+    (5) expression -> . SQRT
+    (6) expression -> . var_assign
+    (7) expression -> . expression + expression
+    (8) expression -> . expression - expression
+    (9) expression -> . expression * expression
+    (10) expression -> . expression / expression
+    (11) expression -> . expression POWER expression
+    (12) expression -> . SQRT expression
+    (13) expression -> . - expression
+    (14) expression -> . ( expression )
+    (15) expression -> . ABS expression ABS
+    (2) var_assign -> . ID
+
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    SQRT            shift and go to state 5
+    -               shift and go to state 7
+    (               shift and go to state 8
+    ABS             shift and go to state 9
+    ID              shift and go to state 10
+
+    expression                     shift and go to state 24
+    var_assign                     shift and go to state 6
+
+state 16
+
+    (12) expression -> SQRT expression .
+    (7) expression -> expression . + expression
+    (8) expression -> expression . - expression
+    (9) expression -> expression . * expression
+    (10) expression -> expression . / expression
+    (11) expression -> expression . POWER expression
+
+    +               reduce using rule 12 (expression -> SQRT expression .)
+    -               reduce using rule 12 (expression -> SQRT expression .)
+    *               reduce using rule 12 (expression -> SQRT expression .)
+    /               reduce using rule 12 (expression -> SQRT expression .)
+    POWER           reduce using rule 12 (expression -> SQRT expression .)
+    $end            reduce using rule 12 (expression -> SQRT expression .)
+    )               reduce using rule 12 (expression -> SQRT expression .)
+    ABS             reduce using rule 12 (expression -> SQRT expression .)
+
+  ! +               [ shift and go to state 11 ]
+  ! -               [ shift and go to state 12 ]
+  ! *               [ shift and go to state 13 ]
+  ! /               [ shift and go to state 14 ]
+  ! POWER           [ shift and go to state 15 ]
+
+
+state 17
+
+    (13) expression -> - expression .
+    (7) expression -> expression . + expression
+    (8) expression -> expression . - expression
+    (9) expression -> expression . * expression
+    (10) expression -> expression . / expression
+    (11) expression -> expression . POWER expression
+
+    +               reduce using rule 13 (expression -> - expression .)
+    -               reduce using rule 13 (expression -> - expression .)
+    *               reduce using rule 13 (expression -> - expression .)
+    /               reduce using rule 13 (expression -> - expression .)
+    POWER           reduce using rule 13 (expression -> - expression .)
+    $end            reduce using rule 13 (expression -> - expression .)
+    )               reduce using rule 13 (expression -> - expression .)
+    ABS             reduce using rule 13 (expression -> - expression .)
+
+  ! +               [ shift and go to state 11 ]
+  ! -               [ shift and go to state 12 ]
+  ! *               [ shift and go to state 13 ]
+  ! /               [ shift and go to state 14 ]
+  ! POWER           [ shift and go to state 15 ]
+
+
+state 18
+
+    (14) expression -> ( expression . )
+    (7) expression -> expression . + expression
+    (8) expression -> expression . - expression
+    (9) expression -> expression . * expression
+    (10) expression -> expression . / expression
+    (11) expression -> expression . POWER expression
+
+    )               shift and go to state 25
+    +               shift and go to state 11
+    -               shift and go to state 12
+    *               shift and go to state 13
+    /               shift and go to state 14
+    POWER           shift and go to state 15
+
+
+state 19
+
+    (15) expression -> ABS expression . ABS
+    (7) expression -> expression . + expression
+    (8) expression -> expression . - expression
+    (9) expression -> expression . * expression
+    (10) expression -> expression . / expression
+    (11) expression -> expression . POWER expression
+
+    ABS             shift and go to state 26
+    +               shift and go to state 11
+    -               shift and go to state 12
+    *               shift and go to state 13
+    /               shift and go to state 14
+    POWER           shift and go to state 15
+
+
+state 20
+
+    (7) expression -> expression + expression .
+    (7) expression -> expression . + expression
+    (8) expression -> expression . - expression
+    (9) expression -> expression . * expression
+    (10) expression -> expression . / expression
+    (11) expression -> expression . POWER expression
+
+    +               reduce using rule 7 (expression -> expression + expression .)
+    -               reduce using rule 7 (expression -> expression + expression .)
+    $end            reduce using rule 7 (expression -> expression + expression .)
+    )               reduce using rule 7 (expression -> expression + expression .)
+    ABS             reduce using rule 7 (expression -> expression + expression .)
+    *               shift and go to state 13
+    /               shift and go to state 14
+    POWER           shift and go to state 15
+
+  ! *               [ reduce using rule 7 (expression -> expression + expression .) ]
+  ! /               [ reduce using rule 7 (expression -> expression + expression .) ]
+  ! POWER           [ reduce using rule 7 (expression -> expression + expression .) ]
+  ! +               [ shift and go to state 11 ]
+  ! -               [ shift and go to state 12 ]
+
+
+state 21
+
+    (8) expression -> expression - expression .
+    (7) expression -> expression . + expression
+    (8) expression -> expression . - expression
+    (9) expression -> expression . * expression
+    (10) expression -> expression . / expression
+    (11) expression -> expression . POWER expression
+
+    +               reduce using rule 8 (expression -> expression - expression .)
+    -               reduce using rule 8 (expression -> expression - expression .)
+    $end            reduce using rule 8 (expression -> expression - expression .)
+    )               reduce using rule 8 (expression -> expression - expression .)
+    ABS             reduce using rule 8 (expression -> expression - expression .)
+    *               shift and go to state 13
+    /               shift and go to state 14
+    POWER           shift and go to state 15
+
+  ! *               [ reduce using rule 8 (expression -> expression - expression .) ]
+  ! /               [ reduce using rule 8 (expression -> expression - expression .) ]
+  ! POWER           [ reduce using rule 8 (expression -> expression - expression .) ]
+  ! +               [ shift and go to state 11 ]
+  ! -               [ shift and go to state 12 ]
+
+
+state 22
+
+    (9) expression -> expression * expression .
+    (7) expression -> expression . + expression
+    (8) expression -> expression . - expression
+    (9) expression -> expression . * expression
+    (10) expression -> expression . / expression
+    (11) expression -> expression . POWER expression
+
+    +               reduce using rule 9 (expression -> expression * expression .)
+    -               reduce using rule 9 (expression -> expression * expression .)
+    *               reduce using rule 9 (expression -> expression * expression .)
+    /               reduce using rule 9 (expression -> expression * expression .)
+    $end            reduce using rule 9 (expression -> expression * expression .)
+    )               reduce using rule 9 (expression -> expression * expression .)
+    ABS             reduce using rule 9 (expression -> expression * expression .)
+    POWER           shift and go to state 15
+
+  ! POWER           [ reduce using rule 9 (expression -> expression * expression .) ]
+  ! +               [ shift and go to state 11 ]
+  ! -               [ shift and go to state 12 ]
+  ! *               [ shift and go to state 13 ]
+  ! /               [ shift and go to state 14 ]
+
+
+state 23
+
+    (10) expression -> expression / expression .
+    (7) expression -> expression . + expression
+    (8) expression -> expression . - expression
+    (9) expression -> expression . * expression
+    (10) expression -> expression . / expression
+    (11) expression -> expression . POWER expression
+
+    +               reduce using rule 10 (expression -> expression / expression .)
+    -               reduce using rule 10 (expression -> expression / expression .)
+    *               reduce using rule 10 (expression -> expression / expression .)
+    /               reduce using rule 10 (expression -> expression / expression .)
+    $end            reduce using rule 10 (expression -> expression / expression .)
+    )               reduce using rule 10 (expression -> expression / expression .)
+    ABS             reduce using rule 10 (expression -> expression / expression .)
+    POWER           shift and go to state 15
+
+  ! POWER           [ reduce using rule 10 (expression -> expression / expression .) ]
+  ! +               [ shift and go to state 11 ]
+  ! -               [ shift and go to state 12 ]
+  ! *               [ shift and go to state 13 ]
+  ! /               [ shift and go to state 14 ]
+
+
+state 24
+
+    (11) expression -> expression POWER expression .
+    (7) expression -> expression . + expression
+    (8) expression -> expression . - expression
+    (9) expression -> expression . * expression
+    (10) expression -> expression . / expression
+    (11) expression -> expression . POWER expression
+
+    +               reduce using rule 11 (expression -> expression POWER expression .)
+    -               reduce using rule 11 (expression -> expression POWER expression .)
+    *               reduce using rule 11 (expression -> expression POWER expression .)
+    /               reduce using rule 11 (expression -> expression POWER expression .)
+    POWER           reduce using rule 11 (expression -> expression POWER expression .)
+    $end            reduce using rule 11 (expression -> expression POWER expression .)
+    )               reduce using rule 11 (expression -> expression POWER expression .)
+    ABS             reduce using rule 11 (expression -> expression POWER expression .)
+
+  ! +               [ shift and go to state 11 ]
+  ! -               [ shift and go to state 12 ]
+  ! *               [ shift and go to state 13 ]
+  ! /               [ shift and go to state 14 ]
+  ! POWER           [ shift and go to state 15 ]
+
+
+state 25
+
+    (14) expression -> ( expression ) .
+
+    +               reduce using rule 14 (expression -> ( expression ) .)
+    -               reduce using rule 14 (expression -> ( expression ) .)
+    *               reduce using rule 14 (expression -> ( expression ) .)
+    /               reduce using rule 14 (expression -> ( expression ) .)
+    POWER           reduce using rule 14 (expression -> ( expression ) .)
+    $end            reduce using rule 14 (expression -> ( expression ) .)
+    )               reduce using rule 14 (expression -> ( expression ) .)
+    ABS             reduce using rule 14 (expression -> ( expression ) .)
+
+
+state 26
+
+    (15) expression -> ABS expression ABS .
+
+    +               reduce using rule 15 (expression -> ABS expression ABS .)
+    -               reduce using rule 15 (expression -> ABS expression ABS .)
+    *               reduce using rule 15 (expression -> ABS expression ABS .)
+    /               reduce using rule 15 (expression -> ABS expression ABS .)
+    POWER           reduce using rule 15 (expression -> ABS expression ABS .)
+    $end            reduce using rule 15 (expression -> ABS expression ABS .)
+    )               reduce using rule 15 (expression -> ABS expression ABS .)
+    ABS             reduce using rule 15 (expression -> ABS expression ABS .)
+

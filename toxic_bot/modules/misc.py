@@ -1,6 +1,6 @@
 from random import randint
 from modules.data_classes.text_data import TextData
-
+from modules.data_classes.globals import Globals
 
 def handle(event):
     data = TextData(event)
@@ -12,8 +12,8 @@ def handle(event):
             message=msg,
             random_id=randint(0, data.int32_max)
         )
-        print('Sending message "{0}" to {1} with id {2}'.format(msg,
-            "USER" if data.event.object.peer_id == data.event.object.from_id else "CHAT", id))
+        print('Sending message "{}" to {} with id {}'.format(msg,
+              "USER" if data.event.object.peer_id == data.event.object.from_id else "CHAT", id))
 
     if data.command == data.keys[0]:
         send_message(data, data.event.object.from_id, data.id)
