@@ -45,7 +45,13 @@ class ModulesManager:
         if module_spec:
             mod = importlib.util.module_from_spec(module_spec)
             module_spec.loader.exec_module(mod)
-            return mod
+
+            if hasattr(mod, "init") and hasattr(mod, "handle"):
+                return mod
+            else:
+                print('No "init" and "handle" functions of module "{}" in directory "{}"'
+                      .format(module_name, self.path))
+                return None
         else:
             print('Could not find module "{}" in directory "{}"'.format(module_name, self.path))
             return None
